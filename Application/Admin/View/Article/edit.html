@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>__ROOT__</title>
+    <link rel="stylesheet" type="text/css" href="__ADMINCSS__/common.css"/>
+    <link rel="stylesheet" type="text/css" href="__ADMINCSS__/main.css"/>
+    <script type="text/javascript" src="__ADMINJS__/libs/modernizr.min.js"></script>
+</head>
+<body>
+<include file="Public/head" />
+<div class="container clearfix">
+    <include file="Public/left" />
+    <!--/sidebar-->
+    <div class="main-wrap">
+
+        <div class="crumb-wrap">
+            <div class="crumb-list"><i class="icon-font"></i><a href="/jscss/admin/design/">首页</a><span class="crumb-step">&gt;</span><a class="crumb-name" href="/jscss/admin/design/">作品管理</a><span class="crumb-step">&gt;</span><span>新增作品</span></div>
+        </div>
+        <div class="result-wrap">
+            <div class="result-content">
+                <form action="__CONTROLLER__/edit" method="post" id="myform" name="myform" enctype="multipart/form-data">
+                    <table class="insert-tab" width="100%">
+                        <tbody>
+                            <tr>
+                                <th>分类名称：</th>
+                                <td><input class="common-text" name="catename" size="50" value="{$cate.catename}" type="text"></td>
+                            </tr>
+
+                            <tr>
+                                <th></th>
+                                <td>
+                                    <input type="hidden" name="id" value="{$cate.id}">
+                                    <input class="btn btn-primary btn6 mr10" value="提交" type="submit">
+                                    <input class="btn btn6" onclick="history.go(-1)" value="返回" type="button">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <!--/main-->
+</div>
+</body>
+</html>

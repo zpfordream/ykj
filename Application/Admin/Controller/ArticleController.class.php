@@ -2,7 +2,19 @@
 namespace Admin\Controller;
 use Think\Controller;
 class ArticleController extends Controller {
-    public function index(){
+
+
+    public function lst(){
+
+        $this->display();
+    }
+
+    public function add(){
+
+        $this->display();
+    }
+
+    public function edit(){
 
         $this->display();
     }

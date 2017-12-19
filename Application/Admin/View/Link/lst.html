@@ -22,7 +22,7 @@
             <form name="" id="myform" method="post" action="__CONTROLLER__/sort">
                 <div class="result-title">
                     <div class="result-list">
-                        <a href="__CONTROLLER__/add"><i class="icon-font"></i>新增分类</a>
+                        <a href="__CONTROLLER__/add"><i class="icon-font"></i>新增链接</a>
                         <a id="batchDel" href="javascript:void(0)"><i class="icon-font"></i>批量删除</a>
                         <input  class="btn btn-primary btn2" type="submit" value="更新排序" >
                     </div>
@@ -34,10 +34,12 @@
                             <th class="tc" width="5%"><input class="allChoose" name="" type="checkbox"></th>
                             <th>排序</th>
                             <th>ID</th>
-                            <th>分类名称</th>
+                            <th>链接名称</th>
+                            <th>url</th>
+                            <th>描述</th>
                             <th>操作</th>
                         </tr>
-                        <volist name="cates" id="vo">
+                        <volist name="links" id="vo">
                         <tr>
                             <td class="tc"><input name="id[]" value="{$vo.id}" type="checkbox"></td>
                             <td>
@@ -45,7 +47,9 @@
                                 <input class="common-input sort-input" name="ord[]" value="{$vo.sort}" type="text">
                             </td>
                             <td>{$vo.id}</td>
-                            <td>{$vo.catename}</td>
+                            <td>{$vo.title}</td>
+                            <td><a href="{$vo.url}">{$vo.url}</a></td>
+                            <td>{$vo.desc}</td>
                             <td>
                                 <a class="link-update" href="__CONTROLLER__/edit/id/{$vo.id}">修改</a>
                                 <a class="link-del" onclick="return confirm('你要删除该栏目吗？');" href="__CONTROLLER__/delete/id/{$vo.id}">删除</a>

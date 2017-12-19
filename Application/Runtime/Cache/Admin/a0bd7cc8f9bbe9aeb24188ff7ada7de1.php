@@ -50,46 +50,32 @@
     <div class="main-wrap">
 
         <div class="crumb-wrap">
-            <div class="crumb-list"><i class="icon-font"></i><a href="/jscss/admin">首页</a><span class="crumb-step">&gt;</span><span class="crumb-name">作品管理</span></div>
+            <div class="crumb-list"><i class="icon-font"></i><a href="/jscss/admin/design/">首页</a><span class="crumb-step">&gt;</span><a class="crumb-name" href="/jscss/admin/design/">作品管理</a><span class="crumb-step">&gt;</span><span>新增作品</span></div>
         </div>
-
         <div class="result-wrap">
-            <form name="" id="myform" method="post" action="/ykj/index.php/Admin/Cate/sort">
-                <div class="result-title">
-                    <div class="result-list">
-                        <a href="/ykj/index.php/Admin/Cate/add"><i class="icon-font"></i>新增分类</a>
-                        <a id="batchDel" href="javascript:void(0)"><i class="icon-font"></i>批量删除</a>
-                        <input  class="btn btn-primary btn2" type="submit" value="更新排序" >
-                    </div>
-                </div>
+            <div class="result-content">
+                <form action="/ykj/index.php/Admin/Cate/edit" method="post" id="myform" name="myform" enctype="multipart/form-data">
+                    <table class="insert-tab" width="100%">
+                        <tbody>
+                            <tr>
+                                <th>分类名称：</th>
+                                <td><input class="common-text" name="catename" size="50" value="<?php echo ($cate["catename"]); ?>" type="text"></td>
+                            </tr>
 
-                <div class="result-content">
-                    <table class="result-tab" width="100%">
-                        <tr>
-                            <th class="tc" width="5%"><input class="allChoose" name="" type="checkbox"></th>
-                            <th>排序</th>
-                            <th>ID</th>
-                            <th>分类名称</th>
-                            <th>操作</th>
-                        </tr>
-                        <?php if(is_array($cates)): $i = 0; $__LIST__ = $cates;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr>
-                            <td class="tc"><input name="id[]" value="<?php echo ($vo["id"]); ?>" type="checkbox"></td>
-                            <td>
-                                <input name="id[]" value="<?php echo ($vo["id"]); ?>" type="hidden">
-                                <input class="common-input sort-input" name="ord[]" value="<?php echo ($vo["sort"]); ?>" type="text">
-                            </td>
-                            <td><?php echo ($vo["id"]); ?></td>
-                            <td><?php echo ($vo["catename"]); ?></td>
-                            <td>
-                                <a class="link-update" href="/ykj/index.php/Admin/Cate/edit/id/<?php echo ($vo["id"]); ?>">修改</a>
-                                <a class="link-del" onclick="return confirm('你要删除该栏目吗？');" href="/ykj/index.php/Admin/Cate/delete/id/<?php echo ($vo["id"]); ?>">删除</a>
-                            </td>
-                        </tr><?php endforeach; endif; else: echo "" ;endif; ?>
+                            <tr>
+                                <th></th>
+                                <td>
+                                    <input type="hidden" name="id" value="<?php echo ($cate["id"]); ?>">
+                                    <input class="btn btn-primary btn6 mr10" value="提交" type="submit">
+                                    <input class="btn btn6" onclick="history.go(-1)" value="返回" type="button">
+                                </td>
+                            </tr>
+                        </tbody>
                     </table>
-                    <div class="list-page"> 2 条 1/1 页</div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
+
     </div>
     <!--/main-->
 </div>
