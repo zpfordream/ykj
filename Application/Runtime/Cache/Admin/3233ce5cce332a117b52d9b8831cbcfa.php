@@ -47,6 +47,7 @@
         </div>
     </div>
     <!--/sidebar-->
+
     <div class="main-wrap">
 
         <div class="crumb-wrap">
@@ -54,10 +55,10 @@
         </div>
 
         <div class="result-wrap">
-            <form name="" id="myform" method="post" action="/ykj/index.php/Admin/Link/sort">
+            <form name="" id="myform" method="post" action="/ykj/index.php/Admin/Article/sort">
                 <div class="result-title">
                     <div class="result-list">
-                        <a href="/ykj/index.php/Admin/Link/add"><i class="icon-font"></i>新增链接</a>
+                        <a href="/ykj/index.php/Admin/Article/add"><i class="icon-font"></i>新增分类</a>
                         <a id="batchDel" href="javascript:void(0)"><i class="icon-font"></i>批量删除</a>
                         <input  class="btn btn-primary btn2" type="submit" value="更新排序" >
                     </div>
@@ -67,26 +68,23 @@
                     <table class="result-tab" width="100%">
                         <tr>
                             <th class="tc" width="5%"><input class="allChoose" name="" type="checkbox"></th>
-                            <th>排序</th>
                             <th>ID</th>
-                            <th>链接名称</th>
-                            <th>url</th>
-                            <th>描述</th>
+                            <th>文章标题</th>
+                            <th>文章类别</th>
+                            <th>缩略图</th>
+                            <th>发表时间</th>
                             <th>操作</th>
                         </tr>
-                        <?php if(is_array($links)): $i = 0; $__LIST__ = $links;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr>
+                        <?php if(is_array($articles)): $i = 0; $__LIST__ = $articles;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr>
                             <td class="tc"><input name="id[]" value="<?php echo ($vo["id"]); ?>" type="checkbox"></td>
-                            <td>
-                                <input name="id[]" value="<?php echo ($vo["id"]); ?>" type="hidden">
-                                <input class="common-input sort-input" name="ord[]" value="<?php echo ($vo["sort"]); ?>" type="text">
-                            </td>
                             <td><?php echo ($vo["id"]); ?></td>
                             <td><?php echo ($vo["title"]); ?></td>
-                            <td><a href="<?php echo ($vo["url"]); ?>"><?php echo ($vo["url"]); ?></a></td>
-                            <td><?php echo ($vo["desc"]); ?></td>
+                            <td><?php echo ($vo["cateid"]); ?></td>
+                            <td><?php echo ($vo["pic"]); ?></td>
+                            <td><?php echo ($vo["time"]); ?></td>
                             <td>
-                                <a class="link-update" href="/ykj/index.php/Admin/Link/edit/id/<?php echo ($vo["id"]); ?>">修改</a>
-                                <a class="link-del" onclick="return confirm('你要删除该栏目吗？');" href="/ykj/index.php/Admin/Link/delete/id/<?php echo ($vo["id"]); ?>">删除</a>
+                                <a class="link-update" href="/ykj/index.php/Admin/Article/edit/id/<?php echo ($vo["id"]); ?>">修改</a>
+                                <a class="link-del" onclick="return confirm('你要删除该栏目吗？');" href="/ykj/index.php/Admin/Article/delete/id/<?php echo ($vo["id"]); ?>">删除</a>
                             </td>
                         </tr><?php endforeach; endif; else: echo "" ;endif; ?>
                     </table>

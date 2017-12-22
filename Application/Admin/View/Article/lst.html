@@ -12,6 +12,7 @@
 <div class="container clearfix">
     <include file="Public/left" />
     <!--/sidebar-->
+
     <div class="main-wrap">
 
         <div class="crumb-wrap">
@@ -32,20 +33,21 @@
                     <table class="result-tab" width="100%">
                         <tr>
                             <th class="tc" width="5%"><input class="allChoose" name="" type="checkbox"></th>
-                            <th>排序</th>
                             <th>ID</th>
-                            <th>分类名称</th>
+                            <th>文章标题</th>
+                            <th>文章类别</th>
+                            <th>缩略图</th>
+                            <th>发表时间</th>
                             <th>操作</th>
                         </tr>
-                        <volist name="cates" id="vo">
+                        <volist name="articles" id="vo">
                         <tr>
                             <td class="tc"><input name="id[]" value="{$vo.id}" type="checkbox"></td>
-                            <td>
-                                <input name="id[]" value="{$vo.id}" type="hidden">
-                                <input class="common-input sort-input" name="ord[]" value="{$vo.sort}" type="text">
-                            </td>
                             <td>{$vo.id}</td>
-                            <td>{$vo.catename}</td>
+                            <td>{$vo.title}</td>
+                            <td>{$vo.cateid}</td>
+                            <td>{$vo.pic}</td>
+                            <td>{$vo.time}</td>
                             <td>
                                 <a class="link-update" href="__CONTROLLER__/edit/id/{$vo.id}">修改</a>
                                 <a class="link-del" onclick="return confirm('你要删除该栏目吗？');" href="__CONTROLLER__/delete/id/{$vo.id}">删除</a>
@@ -53,7 +55,7 @@
                         </tr>
                         </volist>
                     </table>
-                    <div class="list-page"> 2 条 1/1 页</div>
+                    <div class="list-page">{$page}</div>
                 </div>
             </form>
         </div>
