@@ -47,7 +47,7 @@
         </div>
     </div>
     <!--/sidebar-->
-    
+
     <div class="main-wrap">
 
         <div class="crumb-wrap">
@@ -64,7 +64,12 @@
                             </tr>
                             <tr>
                                 <th>文章类别：</th>
-                                <td><input class="common-text" name="cateid" size="50" value="" type="text"></td>
+                                <td>
+                                    <select name="cateid" >
+                                        <option value="0">请选择文章类别</option>
+                                        <?php if(is_array($cates)): $i = 0; $__LIST__ = $cates;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><option value="<?php echo ($vo["id"]); ?>"><?php echo ($vo["catename"]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
+                                    </select>
+                                </td>
                             </tr>
                             <tr>
                                 <th>文章简介：</th>
@@ -72,7 +77,7 @@
                             </tr>
                             <tr>
                                 <th>相关图片：</th>
-                                <td><input class="common-text" name="pic" size="50" value="" type="text"></td>
+                                <td><input class="common-text" name="pic" size="50" value="" type="file"></td>
                             </tr>
                             <tr>
                                 <th>详细内容：</th>

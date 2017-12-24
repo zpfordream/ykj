@@ -29,7 +29,14 @@
                             </tr>
                             <tr>
                                 <th>文章类别：</th>
-                                <td><input class="common-text" name="cateid" size="50" value="" type="text"></td>
+                                <td>
+                                    <select name="cateid" >
+                                        <option value="0">请选择文章类别</option>
+                                        <volist name="cates" id="vo">
+                                            <option value="{$vo.id}">{$vo.catename}</option>
+                                        </volist>
+                                    </select>
+                                </td>
                             </tr>
                             <tr>
                                 <th>文章简介：</th>
@@ -37,7 +44,7 @@
                             </tr>
                             <tr>
                                 <th>相关图片：</th>
-                                <td><input class="common-text" name="pic" size="50" value="" type="text"></td>
+                                <td><input class="common-text" name="pic" size="50" value="" type="file"></td>
                             </tr>
                             <tr>
                                 <th>详细内容：</th>

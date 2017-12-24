@@ -58,9 +58,8 @@
             <form name="" id="myform" method="post" action="/ykj/index.php/Admin/Article/sort">
                 <div class="result-title">
                     <div class="result-list">
-                        <a href="/ykj/index.php/Admin/Article/add"><i class="icon-font"></i>新增分类</a>
+                        <a href="/ykj/index.php/Admin/Article/add"><i class="icon-font"></i>新增文章</a>
                         <a id="batchDel" href="javascript:void(0)"><i class="icon-font"></i>批量删除</a>
-                        <input  class="btn btn-primary btn2" type="submit" value="更新排序" >
                     </div>
                 </div>
 

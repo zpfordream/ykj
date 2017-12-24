@@ -27,22 +27,50 @@ class ArticleController extends Controller {
         if(IS_POST){
 
             $data['title']  = trim(I('title'));
-            $data['url']  = trim(I('url'));
+            $data['cateid']  =  I('cateid') +  0;
             $data['desc']  = trim(I('desc'));
+            $data['content']  = trim(I('content'));
+            $data['time']  = time() ;
 
-            $link = D('Common/Link');
+            //var_dump($_POST);
+            //var_dump($_FILES);
+            if($_FILES['pic']['tmp_name'] != ''){
 
-            if( $link ->create($data)){
-                if( $link ->add()){
-                    $this->success('新的链接提交成功',U('lst'));
+                $upload = new \Think\Upload();// 实例化上传类
+                $upload->maxSize   =     3145728 ;// 设置附件上传大小
+                $upload->exts      =     array('jpg', 'gif', 'png', 'jpeg');// 设置附件上传类型
+                $upload->rootPath  =     './'; // 设置附件上传根目录
+                $upload->savePath  =     './Public/Uploads/'; // 设置附件上传（子）目录
+
+                // 上传文件,相关资料
+                $info   =   $upload->uploadOne($_FILES['pic']);
+                if(!$info) {
+                    // 上传错误提示错误信息
+                    $this->error($upload->getError());
                 }else{
-                    $this->error('新的链接提交失败');
+                    // 上传成功
+                    $data['pic'] = $info['savepath'].$info['savename'];
+                    //var_dump($info);
+                    //var_dump( $data);
+                }
+            }
+
+            $Article = D('Common/Article');
+
+            if( $Article ->create($data)){
+                if( $Article ->add()){
+                    $this->success('新的文章提交成功',U('lst'));
+                }else{
+                    $this->error('新的文章提交失败');
                 }
             }else{
-                $this->error($link->getError());
+                $this->error($Article->getError());
             }
 
         }else{
+            $cate = M('Cate');
+            $cates = $cate->select();
+            $this->assign('cates',$cates);
             $this->display();
         }
     }
