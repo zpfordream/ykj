@@ -81,7 +81,10 @@
                             </tr>
                             <tr>
                                 <th>文章图片：</th>
-                                <td><img src="/ykj/<?php echo ($article["pic"]); ?>" alt="" size="50" width="100">
+                                <td>
+                                    <?php if( $article['pic'] != '' ): ?><img src="/ykj/<?php echo ($article["pic"]); ?>" alt="" size="50" width="100">
+                                    <?php else: ?>
+                                        暂无上传图片<?php endif; ?>
                                     <input class="common-text" name="pic" size="50" value="pic" type="file"></td>
                             </tr>
 

@@ -7,7 +7,8 @@ class ArticleController extends Controller {
     public function lst(){
 
         $page_num = 3 ;   //设置分页条数
-        $article = D('Common/Article');
+        //这里可以用视图模型，专门用于关联的； 也可以手写sql语句
+        $article = D('Common/ArticleView');
 
         //分页
         $count      = $article ->count();// 查询满足要求的总记录数
@@ -16,7 +17,7 @@ class ArticleController extends Controller {
 
         // 进行分页数据查询 注意limit方法的参数要使用Page类的属性
         $list = $article ->order('id desc')->limit($Page->firstRow.','.$Page->listRows)->select();
-//        var_dump($list);
+        var_dump($list);
 
         $this->assign('articles',$list);// 赋值数据集
         $this->assign('page',$show);// 赋值分页输出
@@ -78,26 +79,48 @@ class ArticleController extends Controller {
     public function edit(){
 
         if(IS_POST){
-            var_dump($_POST);
-            var_dump($_FILES);
-//            $data['title']  = trim(I('title'));
-//            $data['url']  = trim(I('url'));
-//            $data['desc']  = trim(I('desc'));
-//            $data['id']  = trim(I('id'));
-//
-//            $link = D('Common/Link');
-//
-//            if( $link -> create( $data ) ){
-//                $result = $link ->save();
-//                if($result !== false){
-//                    $this->success('链接修改成功',U('lst'));
-//                }else{
-//                    $this->error('链接修改失败');
-//                }
-//            }else{
-//                $this->error($link->getError());
-//            }
+            //var_dump($_POST);
+            //var_dump($_FILES);
 
+            $data['title']  = trim(I('title'));
+            $data['cateid']  = I('cateid') + 0;
+            $data['desc']  = trim(I('desc'));
+            $data['content']  = trim(I('content'));
+            $data['id']  = I('id') + 0;
+
+             if($_FILES['pic']['tmp_name'] != ''){
+
+                 $upload = new \Think\Upload();// 实例化上传类
+                 $upload->maxSize   =     3145728 ;// 设置附件上传大小
+                 $upload->exts      =     array('jpg', 'gif', 'png', 'jpeg');// 设置附件上传类型
+                 $upload->rootPath  =     './'; // 设置附件上传根目录
+                 $upload->savePath  =     './Public/Uploads/'; // 设置附件上传（子）目录
+
+                 // 上传文件,相关资料
+                 $info   =   $upload->uploadOne($_FILES['pic']);
+                 if(!$info) {
+                     // 上传错误提示错误信息
+                     $this->error($upload->getError());
+                 }else{
+                     // 上传成功
+                     $data['pic'] = $info['savepath'].$info['savename'];
+                     //var_dump($info);
+                     //var_dump( $data);
+                 }
+             }
+
+            $article = D('Common/Article');
+
+            if( $article -> create( $data ) ){
+                $result = $article ->save();
+                if($result !== false){
+                    $this->success('文章修改成功',U('lst'));
+                }else{
+                    $this->error('文章修改失败');
+                }
+            }else{
+                $this->error($article->getError());
+            }
 
         }else{
             $data['id'] = I('id') + 0 ;
@@ -124,12 +147,12 @@ class ArticleController extends Controller {
 
     public function delete(){
 
-        $id = I('id');
-        $link = M('link');
-        if($link->delete($id)){
-            $this->success('删除链接成功',U('lst'));
+        $id = I('id') + 0;
+        $Articles = M('Article');
+        if($Articles->delete($id)){
+            $this->success('删除文章成功',U('lst'));
         }else{
-            $this->error('删除链接失败');
+            $this->error('删除文章失败');
         }
 
     }

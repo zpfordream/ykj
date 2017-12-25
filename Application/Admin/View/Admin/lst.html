@@ -12,49 +12,43 @@
 <div class="container clearfix">
     <include file="Public/left" />
     <!--/sidebar-->
-
     <div class="main-wrap">
 
         <div class="crumb-wrap">
-            <div class="crumb-list"><i class="icon-font"></i><a href="/jscss/admin">首页</a><span class="crumb-step">&gt;</span><span class="crumb-name">作品管理</span></div>
+            <div class="crumb-list"><i class="icon-font"></i><a href="/jscss/admin">首页</a><span class="crumb-step">&gt;</span><span class="crumb-name">管理员管理</span></div>
         </div>
 
         <div class="result-wrap">
             <form name="" id="myform" method="post" action="__CONTROLLER__/sort">
                 <div class="result-title">
                     <div class="result-list">
-                        <a href="__CONTROLLER__/add"><i class="icon-font"></i>新增文章</a>
-                        <a id="batchDel" href="javascript:void(0)"><i class="icon-font"></i>批量删除</a>
+                        <a href="__CONTROLLER__/add"><i class="icon-font"></i>新增管理员</a>
                     </div>
                 </div>
 
                 <div class="result-content">
                     <table class="result-tab" width="100%">
                         <tr>
-                            <th class="tc" width="5%"><input class="allChoose" name="" type="checkbox"></th>
                             <th>ID</th>
-                            <th>文章标题</th>
-                            <th>文章类别</th>
-                            <th>缩略图</th>
-                            <th>发表时间</th>
+                            <th>管理员名称</th>
                             <th>操作</th>
                         </tr>
-                        <volist name="articles" id="vo">
+                        <volist name="admins" id="vo">
                         <tr>
-                            <td class="tc"><input name="id[]" value="{$vo.id}" type="checkbox"></td>
                             <td>{$vo.id}</td>
-                            <td>{$vo.title}</td>
-                            <td>{$vo.catename}</td>
-                            <td>{$vo.pic}</td>
-                            <td>{$vo.time|date="Y-m-d",###}</td>
+                            <td>{$vo.username}</td>
                             <td>
                                 <a class="link-update" href="__CONTROLLER__/edit/id/{$vo.id}">修改</a>
-                                <a class="link-del" onclick="return confirm('你要删除该栏目吗？');" href="__CONTROLLER__/delete/id/{$vo.id}">删除</a>
+                                <if condition=" $vo['id'] eq 1 ">
+                                <else />
+                                    <a class="link-del" onclick="return confirm('你要删除该栏目吗？');" href="__CONTROLLER__/delete/id/{$vo.id}">删除</a>
+                                </if>
+
                             </td>
                         </tr>
                         </volist>
                     </table>
-                    <div class="list-page">{$page}</div>
+                    <div class="list-page"> 2 条 1/1 页</div>
                 </div>
             </form>
         </div>
