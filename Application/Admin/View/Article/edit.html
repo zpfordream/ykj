@@ -23,14 +23,39 @@
                     <table class="insert-tab" width="100%">
                         <tbody>
                             <tr>
-                                <th>分类名称：</th>
-                                <td><input class="common-text" name="catename" size="50" value="{$cate.catename}" type="text"></td>
+                                <th>文章标题：</th>
+                                <td><input class="common-text" name="title" size="50" value="{$article.title}" type="text"></td>
+                            </tr>
+                            <tr>
+                                <th>文章类别：</th>
+                                <td><select name="cateid" id="">
+                                    <option value="0">请选择类别</option>
+                                    <volist name="cates" id="vo">
+                                        <option value="{$vo.id}"   <if condition=" $vo['id'] eq $article['cateid'] "> selected="selected"</if>   >
+                                            {$vo.catename}
+                                        </option>
+                                    </volist>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>文章简介：</th>
+                                <td><input class="common-text" name="desc" size="50" value="{$article.desc}" type="text"></td>
+                            </tr>
+                            <tr>
+                                <th>文章内容：</th>
+                                <td><input class="common-text" name="content" size="50" value="{$article.content}" type="text"></td>
+                            </tr>
+                            <tr>
+                                <th>文章图片：</th>
+                                <td><img src="__ROOT__/{$article.pic}" alt="" size="50" width="100">
+                                    <input class="common-text" name="pic" size="50" value="pic" type="file"></td>
                             </tr>
 
                             <tr>
                                 <th></th>
                                 <td>
-                                    <input type="hidden" name="id" value="{$cate.id}">
+                                    <input type="hidden" name="id" value="{$article.id}">
                                     <input class="btn btn-primary btn6 mr10" value="提交" type="submit">
                                     <input class="btn btn6" onclick="history.go(-1)" value="返回" type="button">
                                 </td>

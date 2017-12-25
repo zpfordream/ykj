@@ -6,6 +6,7 @@ return array(
         '__PUBLIC__' => SITE_URL.'/Public',
         '__STYLE__' => SITE_URL.'/Public/style',
         '__IMG__' => SITE_URL.'/Public/images',
+        '__UPLOAD__' => SITE_URL.'/Public/Uploads',
     ),
 
     /* 数据库设置 */

@@ -78,35 +78,45 @@ class ArticleController extends Controller {
     public function edit(){
 
         if(IS_POST){
-
-            $data['title']  = trim(I('title'));
-            $data['url']  = trim(I('url'));
-            $data['desc']  = trim(I('desc'));
-            $data['id']  = trim(I('id'));
-
-            $link = D('Common/Link');
-
-            if( $link -> create( $data ) ){
-                $result = $link ->save();
-                if($result !== false){
-                    $this->success('链接修改成功',U('lst'));
-                }else{
-                    $this->error('链接修改失败');
-                }
-            }else{
-                $this->error($link->getError());
-            }
+            var_dump($_POST);
+            var_dump($_FILES);
+//            $data['title']  = trim(I('title'));
+//            $data['url']  = trim(I('url'));
+//            $data['desc']  = trim(I('desc'));
+//            $data['id']  = trim(I('id'));
+//
+//            $link = D('Common/Link');
+//
+//            if( $link -> create( $data ) ){
+//                $result = $link ->save();
+//                if($result !== false){
+//                    $this->success('链接修改成功',U('lst'));
+//                }else{
+//                    $this->error('链接修改失败');
+//                }
+//            }else{
+//                $this->error($link->getError());
+//            }
 
 
         }else{
-
             $data['id'] = I('id') + 0 ;
 
-            $links = M('Link');
-            $link = $links->find($data['id']);
-//            var_dump($link);
+            $Articles = M('Article');
+            $Article = $Articles->find($data['id']);
+            //var_dump($Article);
 
-            $this->assign('link',$link);
+            //修改页面不能直接读出所有数据，只有在列表页面才能关联读取
+//            $sql = "select * from ykj_Article as a join ykj_cate as b on a.cateid = b.id where a.id= ".$data['id'];
+//            $model = M();
+//            $article = $model->query($sql);
+//            var_dump($article);
+//            $article = $article['0'];
+
+            $this->assign('article',$Article);
+            $cate = M('Cate');
+            $cates = $cate->select();
+            $this->assign('cates',$cates);
             $this->display();
         }
 
