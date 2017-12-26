@@ -17,12 +17,13 @@
                         <input type="text" name="username" value="admin" id="user" size="35" class="admin_input_style" />
                     </li>
                     <li>
-                        <label for="pwd">密码：</label>
+                        <label for="password">密码：</label>
                         <input type="password" name="password" value="admin" id="password" size="35" class="admin_input_style" />
                     </li>
                     <li>
-                        <label for="pwd">验证码：</label>
-                        <input type="text" name="verify" id="verify" size="10" class="admin_input_style" /><img style="cursor:pointer;" width="100" height="40" onclick="this.src='/ykj/index.php/Admin/Login/verify/'+Math.random();" src="/ykj/index.php/Admin/Login/verify">
+                        <label for="verify">验证码：</label>
+                        <input type="text" name="verify" id="verify" size="10" class="admin_input_style" />
+                        <img style="cursor:pointer;" width="100" height="40" onclick="this.src='/ykj/index.php/Admin/Login/verify/'+Math.random();" src="/ykj/index.php/Admin/Login/verify">
                     </li>
                     <li>
                         <input type="submit" tabindex="3" value="提交" class="btn btn-primary" />

@@ -18,24 +18,38 @@ class LoginController extends Controller {
 
             $data['username']  =  I('username');
             $data['password']  =  I('password');
-            $data['repassword']  =  I('repassword');
+            $data['verify']  =  trim(I('verify'));
 
             $admin = D('Common/Admin');
-            if( $admin -> create( $data )  ){
-                if( $admin ->add() ){
-                    $this->success('添加管理员成功',U('lst'));
+
+            if( $admin -> create( $data , 4 )  ){
+                if( $admin ->login($data['username'],$data['password']) ){
+                    $this->success('登录成功',U('index/index'));
                 }else{
-                    $this->error('添加管理员失败');
+                    $this->error('您的用户名或者密码错误');
                 }
             }else{
                 $this->error( $admin ->getError() );
             }
         }else {
-            $this->display();
+
+            if(session('id')){
+                $this->error('您已经登录该系统，请不要重复登录',U('index/index'));
+            }else{
+                $this->display();
+            }
         }
     }
 
 
+    public function verify(){
+
+        $Verify =     new \Think\Verify();
+        $Verify->fontSize = 30;
+        $Verify->length   = 3;
+        $Verify->useNoise = false;
+        $Verify->entry();
+    }
 
 
 

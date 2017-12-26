@@ -99,12 +99,21 @@ class AdminController extends Controller {
 
     public function delete(){
         $admins  = M('Admin');
+        $id = I('id');
 
-        if($admins->delete(I('id'))){
+        if($id ==1 ){
+            $this->error('admin不能被删除');
+        }
+        if($admins->delete($id)){
             $this->success('删除管理员成功',U('lst'));
         }else{
             $this->error('删除管理员失败');
         }
+    }
+
+    public function logout(){
+        session(null);
+        $this->success('退出成功，跳转中',U('login/login'));
     }
 
 }
