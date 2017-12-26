@@ -21,7 +21,7 @@ class AdminModel extends Model{
 
 
     protected $_auto = array (
-        array('password','md5',3,'function') , // 对password字段在新增和编辑的时候使md5函数处理
+        array('password','md5',1,'function') , // 对password字段在新增和编辑的时候使md5函数处理,新增时进行md5加密
     );
 
 

@@ -50,39 +50,35 @@
     <div class="main-wrap">
 
         <div class="crumb-wrap">
-            <div class="crumb-list"><i class="icon-font"></i><a href="/jscss/admin">首页</a><span class="crumb-step">&gt;</span><span class="crumb-name">管理员管理</span></div>
+            <div class="crumb-list"><i class="icon-font"></i><a href="/jscss/admin/design/">首页</a><span class="crumb-step">&gt;</span><a class="crumb-name" href="/jscss/admin/design/">作品管理</a><span class="crumb-step">&gt;</span><span>新增作品</span></div>
         </div>
-
         <div class="result-wrap">
-            <form name="" id="myform" method="post" action="/ykj/index.php/Admin/Admin/sort">
-                <div class="result-title">
-                    <div class="result-list">
-                        <a href="/ykj/index.php/Admin/Admin/add"><i class="icon-font"></i>新增管理员</a>
-                    </div>
-                </div>
-
-                <div class="result-content">
-                    <table class="result-tab" width="100%">
-                        <tr>
-                            <th>ID</th>
-                            <th>管理员名称</th>
-                            <th>操作</th>
-                        </tr>
-                        <?php if(is_array($admins)): $i = 0; $__LIST__ = $admins;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr>
-                            <td><?php echo ($vo["id"]); ?></td>
-                            <td><?php echo ($vo["username"]); ?></td>
-                            <td>
-                                <a class="link-update" href="/ykj/index.php/Admin/Admin/edit/id/<?php echo ($vo["id"]); ?>">修改</a>
-                                <?php if( $vo['id'] == 1 ): else: ?>
-                                    <a class="link-del" onclick="return confirm('你要删除该栏目吗？');" href="/ykj/index.php/Admin/Admin/delete/id/<?php echo ($vo["id"]); ?>">删除</a><?php endif; ?>
-
-                            </td>
-                        </tr><?php endforeach; endif; else: echo "" ;endif; ?>
+            <div class="result-content">
+                <form action="/ykj/index.php/Admin/Admin/edit" method="post" id="myform" name="myform" enctype="multipart/form-data">
+                    <table class="insert-tab" width="100%">
+                        <tbody>
+                            <tr>
+                                <th>管理员名称：</th>
+                                <td><input class="common-text" name="username" size="50" value="<?php echo ($admin["username"]); ?>" type="text"></td>
+                            </tr>
+                            <tr>
+                                <th>管理员密码：</th>
+                                <td><input class="common-text" name="password" size="50" value="" type="text"></td>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <td>
+                                    <input type="hidden" name="id" value="<?php echo ($admin["id"]); ?>">
+                                    <input class="btn btn-primary btn6 mr10" value="提交" type="submit">
+                                    <input class="btn btn6" onclick="history.go(-1)" value="返回" type="button">
+                                </td>
+                            </tr>
+                        </tbody>
                     </table>
-                    <div class="list-page"><?php echo ($page); ?></div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
+
     </div>
     <!--/main-->
 </div>
