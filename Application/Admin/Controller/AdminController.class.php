@@ -9,7 +9,7 @@
 namespace Admin\Controller;
 use Think\Controller;
 
-class AdminController extends Controller {
+class AdminController extends CommonController {
 
 
     //分类管理的列表
@@ -27,8 +27,8 @@ class AdminController extends Controller {
         // 进行分页数据查询 注意limit方法的参数要使用Page类的属性
         $list = $admin ->order('id desc')->limit($Page->firstRow.','.$Page->listRows)->select();
 
-        var_dump($list);
-        var_dump($show);
+//        var_dump($list);
+//        var_dump($show);
 
         $this ->assign("admins",$list);
         $this->assign('page',$show);// 赋值分页输出

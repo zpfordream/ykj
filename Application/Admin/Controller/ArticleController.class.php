@@ -1,7 +1,7 @@
 <?php
 namespace Admin\Controller;
 use Think\Controller;
-class ArticleController extends Controller {
+class ArticleController extends CommonController {
 
 
     public function lst(){
@@ -17,7 +17,7 @@ class ArticleController extends Controller {
 
         // 进行分页数据查询 注意limit方法的参数要使用Page类的属性
         $list = $article ->order('id desc')->limit($Page->firstRow.','.$Page->listRows)->select();
-        var_dump($list);
+//        var_dump($list);
 
         $this->assign('articles',$list);// 赋值数据集
         $this->assign('page',$show);// 赋值分页输出

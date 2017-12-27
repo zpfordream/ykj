@@ -1,7 +1,7 @@
 <?php
 namespace Admin\Controller;
 use Think\Controller;
-class CateController extends Controller {
+class CateController extends CommonController {
 
 
     //分类管理的列表
