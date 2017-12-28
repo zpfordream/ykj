@@ -11,6 +11,7 @@ class ArticleController extends CommonController {
 //        var_dump($art);
         $this->assign( 'art' ,$art);
         $this->catename($art['cateid']);
+        $this->pre_next($id);
 
         $this->display();
     }
@@ -18,10 +19,19 @@ class ArticleController extends CommonController {
     public function catename($cateid){
 
         $cate = M('cate');
-        $catename = $cate ->find($cateid);
-        $this->assign('catename',$catename);
+        $cat = $cate ->find($cateid);
+        $this->assign('cat',$cat);
     }
 
+    public function pre_next($id){
 
+        $article = D('article');
+
+        $pre = $article -> where('id < '.$id ) -> where('cateid ='.$id)  ->order('id desc')->find();
+        $nxt = $article -> where('id > '.$id ) -> where('cateid ='.$id)  ->order('id asc') ->find();
+
+        $this->assign('pre',$pre);
+        $this->assign('nxt',$nxt);
+    }
 
 }

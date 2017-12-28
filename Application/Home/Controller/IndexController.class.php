@@ -12,7 +12,7 @@ class IndexController extends CommonController {
         $show       = $Page->show();// 分页显示输出
 
         // 进行分页数据查询 注意limit方法的参数要使用Page类的属性
-        $list = $art ->order('id desc')->limit($Page->firstRow.','.$Page->listRows)->select();
+        $list = $art ->order('time desc')->limit($Page->firstRow.','.$Page->listRows)->select();
 
 //        var_dump($list);
 

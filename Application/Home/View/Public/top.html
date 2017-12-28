@@ -1,9 +1,9 @@
 <div class="topbar">
     <div class="inner">
-        <h1 class="logo"><a href="http://yispace.net" title="意空间阅读网_美文网_美文欣赏_经典美文_励志文章_优美散文">意空间阅读网</a></h1>
+        <h1 class="logo"><a href="__MODULE__/index/index" title="意空间阅读网_美文网_美文欣赏_经典美文_励志文章_优美散文">意空间阅读网</a></h1>
         <ul class="nav">
             <volist name="cates" id="vo">
-            <li id="menu-item-180" ><a href="__MODULE__/cate/index/id/{$vo.id}">{$vo.catename}</a></li>
+            <li <if condition="$current eq $vo['id']">class='current-menu-item'</if>  id="menu-item-180" ><a href="__MODULE__/cate/index/id/{$vo.id}">{$vo.catename}</a></li>
             </volist>
         </ul>
 
